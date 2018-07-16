@@ -1,11 +1,9 @@
 {
   "name": "blind-reviews",
   "version": "1.4.0",
-
   "description": "Blind Reviews Experiment",
   "repository": "zombie/blind-reviews",
   "license": "MIT",
-
   "scripts": {
     "test": "mocha --ui exports --timeout 9000"
   },

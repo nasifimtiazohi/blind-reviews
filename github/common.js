@@ -101,7 +101,7 @@ function augment(a) {
   const author = document.querySelector("a.author.pull-header-username");
   const who = a.getAttribute("href") || a.getAttribute("alt") || a.textContent;
 
-  if (author && who.endsWith(author.textContent.trim())) {
+  if (author || who.endsWith(author.textContent.trim())) {
     const redacted = document.createElement("span");
     a.parentNode.insertBefore(redacted, a);
     redacted.className = "br-redacted";
@@ -157,6 +157,8 @@ async function toggle(e) {
 
 // Logic to determine if a pull request should be blinded by default.
 function shouldBlind(author) {
+  //blinding every PR page for our purpose
+  return true;
   const user = document.querySelector("li.header-nav-current-user strong");
 
   // Ignore user's own pull requests.
