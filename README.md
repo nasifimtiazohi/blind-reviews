@@ -3,6 +3,7 @@ Blind Reviews
 Blind Reviews Experiment, a browser extension to redact authors of review
 requests on Bugzilla and Github
 
+**In this FORKED version, it redacts all commenters from any issue or PR page in GitHub.**
 
 Background
 ----------
