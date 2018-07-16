@@ -1,7 +1,7 @@
 "use strict";
 
 function parsePR(url) {
-  const re = /^(https:\/\/github.com)?\/([\w-]+\/[\w-]+\/pull\/\d+)/;
+  const re = /^(https:\/\/github.com)?\/([\w-]+\/[\w-]+\/(pull|issues)\/\d+)/;
   const match = url.match(re);
   return match && match[2];
 }
@@ -98,7 +98,7 @@ function augment(a) {
   if (a.classList.contains("br-author")) {
     return;
   }
-  const author = document.querySelector("a.author.pull-header-username");
+  const author = document.querySelector("a.author");
   const who = a.getAttribute("href") || a.getAttribute("alt") || a.textContent;
 
   if (author || who.endsWith(author.textContent.trim())) {
@@ -203,7 +203,7 @@ async function prHeader(a) {
   augment(a);
 }
 
-observer.on("a.author.pull-header-username", prHeader);
+observer.on("a.author", prHeader);
 
 document.documentElement.addEventListener("click", toggle);
 
