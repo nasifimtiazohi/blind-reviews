@@ -101,8 +101,12 @@ function augment(a) {
   const author = document.querySelector("a.author");
   const who = a.getAttribute("href") || a.getAttribute("alt") || a.textContent;
   const role = document.querySelector("span.timeline-comment-label");
+  const smallImg=document.querySelector("img.avatar");
+  const smallName=document.querySelector("span.author");
+  const reviewer=document.querySelector("span.css-truncate-target");
 
-  if (author || who.endsWith(author.textContent.trim())||role) {
+  if (author || who.endsWith(author.textContent.trim())|| 
+      role || smallImg || smallName || reviewer) {
     const redacted = document.createElement("span");
     a.parentNode.insertBefore(redacted, a);
     redacted.className = "br-redacted";
@@ -203,10 +207,13 @@ async function prHeader(a) {
 
   augment(a);
 }
-
+observer.on("a.author",augment);
 observer.on("a.author", prHeader);
 
 observer.on("span.timeline-comment-label",augment);
+observer.on("img.avatar",augment);
+observer.on("span.author",augment)
+observer.on("span.css-truncate-target",augment)
 
 document.documentElement.addEventListener("click", toggle);
 
