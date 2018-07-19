@@ -100,8 +100,9 @@ function augment(a) {
   }
   const author = document.querySelector("a.author");
   const who = a.getAttribute("href") || a.getAttribute("alt") || a.textContent;
+  const role = document.querySelector("span.timeline-comment-label");
 
-  if (author || who.endsWith(author.textContent.trim())) {
+  if (author || who.endsWith(author.textContent.trim())||role) {
     const redacted = document.createElement("span");
     a.parentNode.insertBefore(redacted, a);
     redacted.className = "br-redacted";
@@ -204,6 +205,8 @@ async function prHeader(a) {
 }
 
 observer.on("a.author", prHeader);
+
+observer.on("span.timeline-comment-label",augment);
 
 document.documentElement.addEventListener("click", toggle);
 
